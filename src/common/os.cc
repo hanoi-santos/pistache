@@ -142,9 +142,15 @@ namespace Polling {
         , fd(-1)
         , tag(_tag)
     { }
+    
 
     Epoll::Epoll() {
        epoll_fd = TRY_RET(epoll_create(Const::MaxEvents));
+    }
+    
+    Epoll::~Epoll()
+    {
+        if (epoll_fd != -1) close(epoll_fd);
     }
 
     void
@@ -247,6 +253,11 @@ namespace Polling {
 NotifyFd::NotifyFd()
     : event_fd(-1)
 { }
+
+NotifyFd::~NotifyFd()
+{
+    if (event_fd != -1) close(event_fd);
+}
 
 Polling::Tag
 NotifyFd::bind(Polling::Epoll& poller) {

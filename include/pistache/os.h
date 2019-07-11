@@ -99,6 +99,7 @@ struct Event {
 class Epoll {
 public:
     Epoll();
+    ~Epoll();
 
     void addFd(Fd fd, Flags<NotifyOn> interest, Tag tag, Mode mode = Mode::Level);
     void addFdOneShot(Fd fd, Flags<NotifyOn> interest, Tag tag, Mode mode = Mode::Level);
@@ -120,6 +121,7 @@ private:
 class NotifyFd {
 public:
     NotifyFd();
+    ~NotifyFd();
 
     Polling::Tag bind(Polling::Epoll& poller);
 

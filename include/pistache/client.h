@@ -37,6 +37,7 @@ struct Connection : public std::enable_shared_from_this<Connection> {
     using OnDone = std::function<void()>;
 
     Connection();
+    ~Connection();
 
     struct RequestData {
 

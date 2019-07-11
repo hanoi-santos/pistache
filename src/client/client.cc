@@ -400,6 +400,11 @@ Connection::Connection()
     connectionState_.store(NotConnected);
 }
 
+Connection::~Connection()
+{
+    if (fd_ != -1) close();
+}
+
 void
 Connection::connect(const Address& addr)
 {
